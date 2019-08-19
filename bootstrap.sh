@@ -149,8 +149,9 @@ archLinux()
         packages="$packages virtualbox"
     fi
 
-    echo "Updating system..."
-    sudo pacman -Syu
+    # Feels like this shouldn't happen; see redox/redox !1221
+    #echo "Updating system..."
+    #sudo pacman -Syu
 
     echo "Installing packages $packages..."
     sudo pacman -S --needed $packages
@@ -165,8 +166,9 @@ archLinux()
 ubuntu()
 {
     echo "Detected Ubuntu/Debian"
-    echo "Updating system..."
-    sudo "$2" update
+    # Feels like this shouldn't happen; see redox/redox !1221
+    #echo "Updating system..."
+    #sudo "$2" update
     echo "Installing required packages..."
     sudo "$2" install build-essential libc6-dev-i386 nasm curl file git libfuse-dev fuse pkg-config cmake autopoint autoconf libtool m4 syslinux-utils genisoimage flex bison gperf libpng-dev libhtml-parser-perl texinfo
     if [ "$1" == "qemu" ]; then
