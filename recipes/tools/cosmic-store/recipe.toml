@@ -14,7 +14,9 @@ DYNAMIC_INIT
 export GETTEXT_DIR="${COOKBOOK_SYSROOT}/usr"
 export ZSTD_SYS_USE_PKG_CONFIG=1
 #TODO: drop patched rustix after upstream release
-cookbook_cargo --no-default-features --features desktop,pkgar  --config 'patch.crates-io.rustix.git = "https://github.com/bytecodealliance/rustix"'
+cookbook_cargo --no-default-features --features desktop,pkgar \
+    --config 'patch.crates-io.rustix.git = "https://github.com/bytecodealliance/rustix"' \
+    --config 'patch.crates-io.rustix.rev = "8bf15a0"'
 
 #TODO: install with just?
 APPID="com.system76.CosmicStore"
