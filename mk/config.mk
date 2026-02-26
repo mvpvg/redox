@@ -115,11 +115,12 @@ else ifeq ($(UNAME),FreeBSD)
 	FIND=gfind
 	FUMOUNT=sudo umount
 	VB_AUDIO=pulse # To check, will probably be OSS on most setups
-	VBM=VBoxManage'
+	VBM=VBoxManage
 else ifeq ($(UNAME),Redox)
 	PODMAN_BUILD=0
+# TODO: allow overriding to cross compiler toolchain when build server have one prebuilt
 	HOSTED_REDOX=1
-ifeq ($(shell which rustc),)
+ifneq ($(shell which repo),)
 	REPO_BIN=repo
 endif
 else

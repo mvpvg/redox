@@ -1,8 +1,8 @@
 # Configuration file for the build system dependencies
 
-# Don't check for depends if you will be using Podman
+# Don't check for dependencies if you will be using Podman
 ifneq ($(PODMAN_BUILD),1)
-# Don't check for depends if you will be using Hosted Redox
+# Don't check for dependencies if you will be using Hosted Redox
 ifneq ($(HOSTED_REDOX),1)
 
 # don't check for Rust and Cargo if building on a Nix system
