@@ -73,6 +73,7 @@ ifeq ($(PODMAN_BUILD),1)
 	mkdir -p $(PODMAN_HOME)
 	@echo "Building Podman image. This may take some time."
 	cat $(CONTAINERFILE) | podman build --file - $(PODMAN_VOLUMES) $(PODMAN_CACHE) --tag $(IMAGE_TAG)
+	$(PODMAN_RUN) bash -e podman/rustinstall.sh
 	mkdir -p build
 	touch $@
 	@echo "Podman ready!"
