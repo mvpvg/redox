@@ -57,6 +57,7 @@ CONTAINERFILE?=podman/redox-base-containerfile
 NPROC=nproc
 SED=sed
 FIND=find
+REPO_BIN=./target/release/repo
 
 ifneq ($(PODMAN_BUILD),1)
 FSTOOLS_IN_PODMAN=0
@@ -114,7 +115,13 @@ else ifeq ($(UNAME),FreeBSD)
 	FIND=gfind
 	FUMOUNT=sudo umount
 	VB_AUDIO=pulse # To check, will probably be OSS on most setups
-	VBM=VBoxManage
+	VBM=VBoxManage'
+else ifeq ($(UNAME),Redox)
+	PODMAN_BUILD=0
+	HOSTED_REDOX=1
+ifeq ($(shell which rustc),)
+	REPO_BIN=repo
+endif
 else
 	# Detect which version of the fusermount binary is available.
 	ifneq (, $(shell which fusermount3))
@@ -180,6 +187,10 @@ export BOARD FIND
 ifeq ($(SCCACHE_BUILD),1)
 	export CC_WRAPPER:=sccache
 	export RUSTC_WRAPPER:=$(CC_WRAPPER)
+endif
+
+ifeq ($(HOSTED_REDOX),1)
+FSTOOLS_TAG=
 endif
 
 ## If Podman is being used, a container is required
