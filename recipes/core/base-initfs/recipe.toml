@@ -114,7 +114,7 @@ RUSTFLAGS="$RUSTFLAGS -Ctarget-feature=+crt-static" cargo \
     -z max-page-size=4096 \
     "${COOKBOOK_BUILD}/${TARGET}/release/libbootstrap.a"
 
-env -u CARGO cargo run --manifest-path "${COOKBOOK_SOURCE}/initfs/tools/Cargo.toml" --bin redox-initfs-ar -- "${COOKBOOK_BUILD}/initfs" "${COOKBOOK_BUILD}/bootstrap" -o "${COOKBOOK_BUILD}/initfs.img"
+env -u CARGO -u RUSTFLAGS cargo run --manifest-path "${COOKBOOK_SOURCE}/initfs/tools/Cargo.toml" --bin redox-initfs-ar -- "${COOKBOOK_BUILD}/initfs" "${COOKBOOK_BUILD}/bootstrap" -o "${COOKBOOK_BUILD}/initfs.img"
 
 mkdir -v "${COOKBOOK_STAGE}/boot"
 cp "${COOKBOOK_BUILD}/initfs.img" "${COOKBOOK_STAGE}/boot/initfs"
