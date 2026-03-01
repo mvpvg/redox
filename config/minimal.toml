@@ -9,9 +9,11 @@ filesystem_size = 196
 
 # Package settings
 [packages]
+ca-certificates = {}
 coreutils = {}
 extrautils = {}
 ion = {}
+pkgutils = {}
 kibi = {}
 
 [[files]]
