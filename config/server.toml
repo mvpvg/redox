@@ -1,6 +1,6 @@
 # Server configuration
 
-include = ["net.toml"]
+include = ["base.toml"]
 
 # General settings
 [general]
